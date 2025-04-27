@@ -7,6 +7,7 @@ public class JeuClient extends Jeu {
 	/**
 	 * Controleur
 	 */
+
 	public JeuClient() {
 	}
 	
@@ -16,6 +17,10 @@ public class JeuClient extends Jeu {
 
 	@Override
 	public void reception() {
+	}
+	@Override
+	public void deconnexion() {
+	    System.out.println("Déconnexion effectuée !");
 	}
 	
 	/**

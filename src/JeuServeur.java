@@ -16,6 +16,18 @@ public class JeuServeur extends Jeu {
 	private ArrayList<Joueur> lesJoueurs = new ArrayList<Joueur>() ;
 	
 	/**
+	 * ajouter joueur
+	 */
+	public void ajouterJoueur(Joueur joueur) {
+	    lesJoueurs.add(joueur);
+	}
+	/**
+	 * ajouter mur
+	 */
+	public void ajouterMur(Mur mur) {
+	    lesMurs.add(mur);
+	}
+	/**
 	 * Constructeur
 	 */
 	public JeuServeur() {
@@ -32,6 +44,7 @@ public class JeuServeur extends Jeu {
 	@Override
 	public void deconnexion() {
 	}
+
 
 	/**
 	 * Envoi d'une information vers tous les clients

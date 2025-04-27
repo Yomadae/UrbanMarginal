@@ -1,9 +1,8 @@
 /**
  * Gestion des joueurs
  *
- */
+ */ 
 public class Joueur extends Objet {
-
 	/**
 	 * vie de départ pour tous les joueurs
 	 */
@@ -14,9 +13,8 @@ public class Joueur extends Objet {
 	private static final int GAIN = 1 ; 
 	/**
 	 * perte de points de vie lors d'une attaque
-	 */
+	 */ 
 	private static final int PERTE = 2 ; 
-	
 	/**
 	 * pseudo saisi
 	 */
@@ -34,78 +32,38 @@ public class Joueur extends Objet {
 	 */
 	private int etape ;
 	/**
-	 * la boule du joueur
-	 */
+	 * la boule du joueur 
+	 */ 
 	private Boule boule ;
-	
+	/**
+	* vie restante du joueur
+	*/
+	private int vie ; 
+	/**
+	* tourné vers la gauche (0) ou vers la droite (1)
+	*/
+	private int orientation ; 
 	/**
 	 * Constructeur
-	 */
-	public Joueur() {
-	}
-
-	/**
-	 * Initialisation d'un joueur (pseudo et numéro, calcul de la 1ère position, affichage, création de la boule)
-	 */
-	public void initPerso() {
-	}
-
-	/**
-	 * Calcul de la première position aléatoire du joueur (sans chevaucher un autre joueur ou un mur)
-	 */
-	private void premierePosition() {
-	}
-	
-	/**
-	 * Affiche le personnage et son message
-	 */
-	public void affiche() {
-	}
-
-	/**
-	 * Gère une action reçue et qu'il faut afficher (déplacement, tire de boule...)
-	 */
-	public void action() {
-	}
-
-	/**
-	 * Gère le déplacement du personnage
-	 */
-	private void deplace() { 
-	}
-
-	/**
-	 * Contrôle si le joueur touche un des autres joueurs
-	 * @return true si deux joueurs se touchent
-	 */
-	private Boolean toucheJoueur() {
-		return null;
-	}
-
-	/**
-	 * Gain de points de vie après avoir touché un joueur
-	 */
-	public void gainVie() {
-	}
-	
-	/**
-	 * Perte de points de vie après avoir été touché 
-	 */
 	public void perteVie() {
 	}
-	
+	/** 
+	* Contrôle si le joueur touche un des murs
+	* @return true si un joueur touche un mur
+	*/
+	private Boolean toucheMur() {
+		return null;
+	}
 	/**
 	 * vrai si la vie est à 0
 	 * @return true si vie = 0
 	 */
 	public Boolean estMort() {
-		return null;
+ 		return null;
 	}
-	
-	/**
-	 * Le joueur se déconnecte et disparait
-	 */
-	public void departJoueur() {
-	}
-	
+ 	/**
+ 	 * Le joueur se déconnecte et disparait
+ 	 */
+ 	public void departJoueur() {
+ 	} 
 }

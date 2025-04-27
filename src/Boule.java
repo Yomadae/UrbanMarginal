@@ -13,6 +13,7 @@ public class Boule extends Objet {
 	 * Constructeur
 	 */
 	public Boule() {
+		this.jeuServeur = jeuServeur;
 	}
 	
 	/**
