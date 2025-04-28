@@ -47,7 +47,37 @@ public class Joueur extends Objet {
 	private int orientation ; 
 	/**
 	 * Constructeur
-	public void perteVie() {
+	 */
+	public Joueur() {
+	}
+	/**
+	 * Initialisation d'un joueur (pseudo et numéro, calcul de la 1ère position, affichage, création de la boule)
+	 */
+	public void initPerso() {
+	}
+
+	/**
+	 * première position aléatoire du joueur (sans toucher un autre joueur ou un mur)
+	 */
+	private void premierePosition() {
+	}
+	
+	/**
+	 * Affiche le personnage et son message
+	 */
+	public void affiche() {
+	}
+
+	/**
+	 * affichage action et action (déplacement, tire de boule...)
+	 */
+	public void action() {
+	}
+
+	/**
+	 * déplacement du personnage
+	 */
+	private void deplace() { 
 	}
 	/** 
 	* Contrôle si le joueur touche un des murs
@@ -57,7 +87,18 @@ public class Joueur extends Objet {
 		return null;
 	}
 	/**
-	 * vrai si la vie est à 0
+	 * Gain de points de vie
+	 */
+	public void gainVie() {
+	}
+	
+	/**
+	 * Perte de points de vie
+	 */
+	public void perteVie() {
+	}
+	/**
+	 * mort si la vie est à 0
 	 * @return true si vie = 0
 	 */
 	public Boolean estMort() {

@@ -3,16 +3,15 @@ import java.util.ArrayList;
 
 /**
  * Gestion du jeu côté serveur
- *
  */
 public class JeuServeur extends Jeu {
 
 	/**
-	 * Collection de murs
+	 * murs
 	 */
 	private ArrayList<Mur> lesMurs = new ArrayList<Mur>() ;
 	/**
-	 * Collection de joueurs
+	 * joueurs
 	 */
 	private ArrayList<Joueur> lesJoueurs = new ArrayList<Joueur>() ;
 	

@@ -46,12 +46,14 @@ public class EntreeJeu extends JFrame {
 	 * clique sur le bouton Connect pour se connecter à un serveur
 	 */
 	private void btnConnect_clic() {
-		(new ChoixJoueur()).setVisible(true);
-		this.dispose();
+		System.out.println("btnConnect_clic() est bien appelée !");
+		System.out.println("IP saisie : " + this.txtIP.getText());
+		this.controle.evenementEntreeJeu(this.txtIP.getText());
 	}	
 	
 	/**
 	 * Create the frame.
+	 * 
 	 */
 	public EntreeJeu(Controle controle) {
 		setResizable(false);
@@ -88,7 +90,7 @@ public class EntreeJeu extends JFrame {
 		btnConnect.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnConnect_clic() ;
+				btnConnect_clic();
 			}
 		});
 		btnConnect.setBounds(186, 57, 89, 23);

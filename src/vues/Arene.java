@@ -30,10 +30,10 @@ public class Arene extends JFrame {
 	 * Create the frame.
 	 */
 	public Arene() {
-		// Dimension de la frame en fonction de son contenu
+		// Dimension selon contenu
 		this.getContentPane().setPreferredSize(new Dimension(800, 600 + 25 + 140));
 	    this.pack();
-	    // interdiction de changer la taille
+	    // interdiction de modifier la taille
 		this.setResizable(false);
 		
 		setTitle("Arena");
@@ -53,15 +53,13 @@ public class Arene extends JFrame {
 		contentPane.add(jspChat);
 		
 		txtAreaChat = new JTextArea();
-		jspChat.setViewportView(txtAreaChat);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		jspChat.setRowHeaderView(scrollPane);
+		jspChat.setViewportView(txtAreaChat);		
 		
 		JLabel lblFond = new JLabel("");
-		String chemin = "fonds/fondarene.jpg";
-		URL resource = getClass().getClassLoader().getResource(chemin);
-		lblFond.setIcon(new ImageIcon("C:\\projet\\UrbanMarginal\\media\\fond\\fondarene.jpg"));		
+		lblFond.setIcon(new ImageIcon("C:\\projet\\UrbanMarginal\\medias\\fond\\fondarene.jpg"));
+		//String chemin = "fonds/fondarene.jpg";
+		//URL resource = getClass().getClassLoader().getResource(chemin);
+		//lblFond.setIcon(new ImageIcon(Arene.class.getResource("/fond/fondarene.jpg")));		
 		lblFond.setBounds(0, 0, 800, 600);
 		contentPane.add(lblFond);
 		

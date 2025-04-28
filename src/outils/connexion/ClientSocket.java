@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
+
 /**
  * Gestion d'un client : création d'une connexion cliente
  * @author emds
@@ -25,12 +26,13 @@ public class ClientSocket {
 			System.out.println("connexion serveur réussie");
 			// la connexion ne peut se faire que si un objet delegate existe (pour récupérer la réponse)
 			if(delegate != null) {
-				// création d'une connexion pour ce client, pour la communication avec le serveur (envoi et réception d'informations)
-				new Connection(socket, delegate) ;
+			// création d'une connexion pour ce client, pour la communication avec le serveur (envoi et réception d'informations)
+			new Connection(socket, delegate) ;
 			}
 		} catch (UnknownHostException e) {
 			JOptionPane.showMessageDialog(null, "serveur non disponible");
 		} catch (IOException e) {
+			System.out.println("Tentative de connexion à l'IP : " + ip + " sur le port "+ port);
 			JOptionPane.showMessageDialog(null, "IP incorrecte");
 		}
 	}
