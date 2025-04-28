@@ -1,7 +1,7 @@
 package modele;
 /**
- * Informations communes � tous les objets (joueurs, murs, boules)
- * permet de m�moriser la position de l'objet et de g�rer les  collisions
+ * Informations(joueurs, murs, boules)
+ * pour mémoriser la position de l'objet et eviter les collisions
  *
  */
 public abstract class Objet {
@@ -16,9 +16,9 @@ public abstract class Objet {
 	protected Integer posY ;
 	
 	/**
-	 * contr�le si l'objet actuel touche l'objet pass� en param�tre
-	 * @param objet contient l'objet � contr�ler
-	 * @return true si les 2 objets se touchent
+	 * controle si l'objet touche un autre objet
+	 * @param objet contient l'objet
+	 * @return true si les objets se touchent
 	 */
 	public Boolean toucheObjet (Objet objet) {
 		return null;
