@@ -11,8 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
+import outils.connexion.Connection;
 import controleur.Controle;
+import modele.JeuClient;
+
 
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -65,18 +67,6 @@ public class ChoixJoueur extends JFrame {
 	}
 	
 	/**
-	 * Clic sur GO pour envoyer les informations
-	 */
-	private void lblGo_clic() {
-		if(this.txtPseudo.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "La saisie du pseudo est obligatoire");
-			this.txtPseudo.requestFocus();
-		} else {
-			this.controle.evenementChoixJoueur(this.txtPseudo.getText(), numPerso);
-		}
-	}
-	
-	/**
 	 * Affichage du personnage correspondant au numéro numPerso
 	 */
 	private void affichePerso() {
@@ -98,12 +88,25 @@ public class ChoixJoueur extends JFrame {
 	private void sourisDoigt() {
 		contentPane.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
+	/**
+	 * Clic sur GO pour envoyer les informations
+	 */
+	private void lblGo_clic() {
+		if(this.txtPseudo.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "La saisie du pseudo est obligatoire");
+			this.txtPseudo.requestFocus();
+		} else {
+			Connection connection = ((JeuClient)this.controle.getLeJeu()).getConnection();
+	        this.controle.evenementChoixJoueur(this.txtPseudo.getText(), numPerso, connection);
+		}
+	}
 
 	/**
 	 * Create the frame.
 	 * @param controle instance du contrôleur
 	 */
 	public ChoixJoueur(Controle controle) {
+		this.controle = controle;
 		// Dimension de la frame en fonction de son contenu
 		this.getContentPane().setPreferredSize(new Dimension(400, 275));
 	    this.pack();

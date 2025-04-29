@@ -1,25 +1,43 @@
 package modele;
 
+import controleur.Controle;
+import outils.connexion.Connection;
+
 /**
  * Gestion du jeu côté client
  *
  */
 public class JeuClient extends Jeu {
-	
 	/**
-	 * Controleur
+	 * communication avec le serveur
 	 */
-
-	public JeuClient() {
+	private Connection connection;
+	public Connection getConnection() {
+	    return this.connection; // Renvoie la connexion stockée
 	}
-	
+	/**
+	 * Controler
+	 * * @param controle pour contrôler les échanges
+	 */
+	public JeuClient(Controle controle) {
+		super.controle = controle;
+	}
+	/**
+	 * connexion
+	 */
 	@Override
-	public void connexion() {
+	public void connexion(Connection connection) {
+		this.connection = connection;
 	}
-
+	/**
+	 * reception
+	 */
 	@Override
-	public void reception() {
+	public void reception(Connection connection, Object info) {
 	}
+	/**
+	 * deconnexion
+	 */
 	@Override
 	public void deconnexion() {
 	    System.out.println("Déconnexion effectuée !");
@@ -28,8 +46,10 @@ public class JeuClient extends Jeu {
 	/**
 	 * Envoi d'une information vers le serveur
 	 * fais appel une fois à l'envoi dans la classe Jeu
+	 * @param info information à envoyer au serveur
 	 */
-	public void envoi() {
+	public void envoienvoi(String info) {
+		super.envoi(this.connection, info);
 	}
 
 }

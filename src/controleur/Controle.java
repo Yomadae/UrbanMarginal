@@ -1,5 +1,8 @@
 package controleur;
 
+import modele.Jeu;
+import modele.JeuClient;
+import modele.JeuServeur;
 import outils.connexion.AsyncResponse;
 import outils.connexion.ClientSocket;
 import outils.connexion.Connection;
@@ -11,12 +14,8 @@ import vues.EntreeJeu;
 /**
  * Contrôleur et point d'entrée de l'applicaton 
  */
-public class Controle implements AsyncResponse {
+public class Controle implements AsyncResponse,Global {
 
-	/**
-	 * N° du port d'écoute du serveur
-	 */
-	private static final int PORT = 6666;
 	/**
 	 * frame EntreeJeu
 	 */
@@ -33,7 +32,13 @@ public class Controle implements AsyncResponse {
 	 * type du jeu : client ou serveur
 	 */
 	private String typeJeu;
-
+	/**
+	 * déclaration jeu
+	 */
+	private Jeu leJeu;
+	public Jeu getLeJeu() {
+	    return this.leJeu;
+	}
 	/**
 	 * Méthode de démarrage
 	 * @param args non utilisé
@@ -51,49 +56,61 @@ public class Controle implements AsyncResponse {
 	}
 	
 	/**
-	 * Demande provenant de la vue EntreeJeu
+	 * Demande de la vue EntreeJeu
 	 * @param info information à traiter
 	 */
 	public void evenementEntreeJeu(String info) {
-		if(info.equals("serveur")) {
-			this.typeJeu = "serveur";
+		if(info.equals("serveur")) {			
 			new ServeurSocket(this, PORT);
+			this.leJeu = new JeuServeur(this);			
 			this.frmEntreeJeu.dispose();
 			this.frmArene = new Arene();
 			this.frmArene.setVisible(true);
 		} else {
-			this.typeJeu = "client";
 			new ClientSocket(this, info, PORT);
 		}
-	}
-	
+	}	
 	/**
-	 * Informations provenant de la vue ChoixJoueur
+	 * Informations de la vue ChoixJoueur
 	 * @param pseudo le pseudo du joueur
 	 * @param numPerso le numéro du personnage choisi par le joueur
+	 * @param connection 
 	 */
-	public void evenementChoixJoueur(String pseudo, int numPerso) {
+	public void evenementChoixJoueur(String pseudo, int numPerso, Connection connection) {
 		this.frmChoixJoueur.dispose();
 		this.frmArene.setVisible(true);
+	    ((JeuClient)this.leJeu).envoi(connection, PSEUDO+STRINGSEPARE+pseudo+STRINGSEPARE+numPerso);
 	}
+	/**
+	 * Envoi d'informations vers l'ordinateur distant
+ 	 * @param connection connexion pour envoi vers l'ordinateur distant
+ 	 * @param info information à envoyer
+ 	 */
+ 	public void envoi(Connection connection, Object info) {
+ 		connection.envoi(info);
+ 	}
 
 	@Override
 	public void reception(Connection connection, String ordre, Object info) {
 		switch(ordre) {
-		case "connexion" :
-			if(this.typeJeu.equals("client")) {
+		case CONNEXION :
+			if(!(this.leJeu instanceof JeuServeur)) {
+ 				this.leJeu = new JeuClient(this);
+				this.leJeu.connexion(connection);
 				this.frmEntreeJeu.dispose();
 				this.frmArene = new Arene();
 				this.frmChoixJoueur = new ChoixJoueur(this);
 				this.frmChoixJoueur.setVisible(true);
+			} else {
+				this.leJeu.connexion(connection);
 			}
 			break;
-		case "reception" :
+		case RECEPTION :
+				this.leJeu.reception(connection, info);
 			break;
-		case "deconnexion" :
+		case DECONNEXION :
 			break;
 		}
 		
 	}
-
 }
